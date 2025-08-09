@@ -168,12 +168,6 @@ The application uses two main vector databases:
    - Used for story-related queries
    - Collection: `stories-rag-chroma`
 
-## Memory and Chat History
-
-- Chat conversations are automatically saved in the `memory/` directory
-- Each day's conversations are stored in separate CSV files
-- Includes timestamp, thread ID, user query, and response
-
 ## Development
 
 ### Adding New Tools
