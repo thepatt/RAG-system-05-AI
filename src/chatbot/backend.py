@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List
 from chatbot.load_config import LoadProjectConfig
 from agent_graph.load_tools_config import LoadToolsConfig
 from agent_graph.build_full_graph import build_graph
@@ -24,34 +24,35 @@ class ChatBot:
         config (dict): A configuration dictionary that stores specific settings such as the `thread_id`.
 
     Methods:
-        respond(chatbot: List, message: str) -> Tuple:
-            Processes the user message through the agent graph, generates a response, appends it to the chat history,
-            and writes the chat history to a file.
+        respond(chatbot: List, message: str) -> str:
+            Processes the user message through the agent graph, generates a response, and saves the chat history.
     """
     @staticmethod
-    def respond(chatbot: List, message: str) -> Tuple:
+    def respond(chatbot: List, message: str) -> str:
         """
-        Processes a user message using the agent graph, generates a response, and appends it to the chat history.
-        The chat history is also saved to a memory file for future reference.
+        Processes a user message using the agent graph, generates a response, and saves the chat history.
 
         Args:
-            chatbot (List): A list representing the chatbot conversation history. Each entry is a tuple of the user message and the bot response.
+            chatbot (List): A list representing the chatbot conversation history. Each entry is a dict with role and content.
             message (str): The user message to process.
 
         Returns:
-            Tuple: Returns an empty string (representing the new user input placeholder) and the updated conversation history.
+            str: The assistant's response message.
         """
         # The config is the **second positional argument** to stream() or invoke()!
         events = graph.stream(
             {"messages": [("user", message)]}, config, stream_mode="values"
         )
+        
+        response_content = ""
         for event in events:
+            response_content = event["messages"][-1].content
             event["messages"][-1].pretty_print()
 
-        # Update conversation with dictionaries instead of tuples
-        chatbot.append({"role": "user", "content": message})
-        chatbot.append({"role": "assistant", "content": event["messages"][-1].content})
+        # Update conversation with the new assistant message
+        chatbot.append({"role": "assistant", "content": response_content})
 
         Memory.write_chat_history_to_file(
             gradio_chatbot=chatbot, folder_path=PROJECT_CFG.memory_dir, thread_id=TOOLS_CFG.thread_id)
-        return "", chatbot
+        
+        return response_content

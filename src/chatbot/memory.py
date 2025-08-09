@@ -34,7 +34,10 @@ class Memory:
             - The CSV file is named using the current date in 'YYYY-MM-DD' format.
             - Each row in the CSV file contains the following columns: 'thread_id', 'timestamp', 'user_query', 'response'.
         """
-        tmp_list = list(gradio_chatbot[-1])  # Convert the tuple to a list
+        # tmp_list = list(gradio_chatbot[-1])  # Convert the tuple to a list
+        last_message = gradio_chatbot[-1]
+        if isinstance(last_message, dict):
+            tmp_list = [last_message.get('content', ''), 'response_content']
 
         today_str = date.today().strftime('%Y-%m-%d')
         tmp_list.insert(0, thread_id)  # Add the new value to the list

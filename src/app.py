@@ -1,59 +1,61 @@
-import gradio as gr
+import streamlit as st
 from chatbot.backend import ChatBot
 from utils.ui_settings import UISettings
 
+# Configure Streamlit page
+st.set_page_config(
+    page_title="AgentGraph Chatbot",
+    page_icon="🤖",
+    layout="wide"
+)
 
-with gr.Blocks() as demo:
-    with gr.Tabs():
-        with gr.TabItem("AgentGraph"):
-            ##############
-            # First ROW:
-            ##############
-            with gr.Row() as row_one:
-                chatbot = gr.Chatbot(
-                    type='messages',
-                    elem_id="chatbot",
-                    height=500,
-                    avatar_images=(
-                        ("images/agent.png"), "images/openai.png"),
-                    # render=False
-                )
-                # **Adding like/dislike icons
-                chatbot.like(UISettings.feedback, None, None)
-            ##############
-            # SECOND ROW:
-            ##############
-            with gr.Row():
-                input_txt = gr.Textbox(
-                    lines=3,
-                    scale=8,
-                    placeholder="Enter text and press enter, or upload PDF files",
-                    container=False,
-                )
+# Initialize session state
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-            ##############
-            # Third ROW:
-            ##############
-            with gr.Row() as row_two:
-                text_submit_btn = gr.Button(value="Submit text")
-                clear_button = gr.ClearButton([input_txt, chatbot])
-            ##############
-            # Process:
-            ##############
-            txt_msg = input_txt.submit(fn=ChatBot.respond,
-                                       inputs=[chatbot, input_txt],
-                                       outputs=[input_txt,
-                                                chatbot],
-                                       queue=False).then(lambda: gr.Textbox(interactive=True),
-                                                         None, [input_txt], queue=False)
+# Main app
+st.title("🤖 AgentGraph Chatbot")
 
-            txt_msg = text_submit_btn.click(fn=ChatBot.respond,
-                                            inputs=[chatbot, input_txt],
-                                            outputs=[input_txt,
-                                                     chatbot],
-                                            queue=False).then(lambda: gr.Textbox(interactive=True),
-                                                              None, [input_txt], queue=False)
+# Display chat messages
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+        
+        # Add feedback buttons for assistant messages
+        if message["role"] == "assistant":
+            col1, col2, col3 = st.columns([1, 1, 10])
+            with col1:
+                if st.button("👍", key=f"like_{len(st.session_state.messages)}_{message['content'][:10]}"):
+                    UISettings.feedback(message["content"], liked=True)
+            with col2:
+                if st.button("👎", key=f"dislike_{len(st.session_state.messages)}_{message['content'][:10]}"):
+                    UISettings.feedback(message["content"], liked=False)
 
+# Chat input
+if prompt := st.chat_input("Enter your message..."):
+    # Add user message to chat history
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    
+    # Display user message
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    
+    # Get bot response
+    with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):
+            response = ChatBot.respond(st.session_state.messages.copy(), prompt)
+            st.markdown(response)
 
-if __name__ == "__main__":
-    demo.launch()
+# Sidebar with controls
+with st.sidebar:
+    st.header("Controls")
+    
+    if st.button("Clear Chat"):
+        st.session_state.messages = []
+        st.rerun()
+    
+    st.header("Chat Statistics")
+    st.metric("Total Messages", len(st.session_state.messages))
+    user_messages = len([m for m in st.session_state.messages if m["role"] == "user"])
+    st.metric("User Messages", user_messages)
+    st.metric("Assistant Messages", len(st.session_state.messages) - user_messages)

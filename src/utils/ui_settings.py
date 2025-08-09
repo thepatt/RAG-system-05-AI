@@ -1,19 +1,17 @@
-import gradio as gr
-
-
 class UISettings:
     """
     Utility class for managing UI settings.
     """
     @staticmethod
-    def feedback(data: gr.LikeData):
+    def feedback(content: str, liked: bool = True):
         """
         Process user feedback on the generated response.
 
         Parameters:
-            data (gr.LikeData): Gradio LikeData object containing user feedback.
+            content (str): The content that was liked/disliked.
+            liked (bool): Whether the user liked (True) or disliked (False) the response.
         """
-        if data.liked:
-            print("You upvoted this response: " + data.value)
+        if liked:
+            print("You upvoted this response: " + content[:100] + "...")
         else:
-            print("You downvoted this response: " + data.value)
+            print("You downvoted this response: " + content[:100] + "...")

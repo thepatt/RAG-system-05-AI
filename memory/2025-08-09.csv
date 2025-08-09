@@ -1,3 +1,39 @@
 thread_id,timestamp,user_query,response
 1,17:21:50,role,content
 1,17:22:00,role,content
+1,19:44:38,role,content
+1,19:55:47,Hello Tai! How can I assist you today?,response_content
+1,20:00:23,"In the stories, Lily is a young bee who lives in the vibrant meadows of Blossom Valley. Although she is smaller than the other bees, she compensates for her size with a deep love for flowers and her family. Lily spends her days collecting nectar and learning the art of honey-making from her mother and the intricate dance patterns used for communication from her father.
+
+One day, while exploring a field of wildflowers, Lily gets caught in a storm that whisks her away from her home. Determined to return to her family, she embarks on an adventurous journey filled with challenges and encounters with various creatures, such as a wise owl and a friendly butterfly. Through her experiences, Lily grows stronger and wiser.
+
+Eventually, she finds her way back to Blossom Valley, where her family welcomes her with joy. Lily's adventures transform her into a seasoned adventurer and storyteller, and she becomes a beacon of hope for other young bees, teaching them valuable lessons about resilience and preparedness.",response_content
+1,20:00:46,"No, you do not need to reconfirm your flight with SWISS Airlines. Reconfirmation of flights is not required.",response_content
+1,20:01:06,"To change your booking with SWISS Airlines, you need to follow these guidelines:
+
+1. **Ticket Number**: Ensure that your ticket number starts with 724 (this indicates it is a SWISS ticket).
+
+2. **Payment Method**: The ticket must not have been paid for by barter or voucher. If it was paid for in full by voucher, there may be exceptions that allow for online rebooking under certain circumstances.
+
+3. **Active Flight Booking**: There must be an active flight booking for your ticket. It is not possible to rebook open tickets or tickets without the corresponding flight segments online.
+
+4. **Rebooking Options**: Currently, you can only rebook outbound (one-way) tickets or return tickets with single flight routes (point-to-point).
+
+5. **Time Before Departure**: If you are departing from a Swiss airport, you can rebook online up to three hours before departure.
+
+If you meet these criteria, you can proceed with the online rebooking process through the SWISS Airlines website or app. If you encounter any issues or have specific questions, it may be helpful to contact SWISS Airlines customer service for assistance.",response_content
+1,20:04:33,"### Who is Lily?
+Lily is a young bee from the vibrant meadows of Blossom Valley. Although she is smaller than the other bees, she is known for her boundless love for flowers and her family. Lily spends her days collecting nectar for her hive and learning important skills from her parents. One day, she gets caught in a storm that whisks her away to a strange land. Determined to return home, she embarks on an adventurous journey filled with challenges and valuable lessons. By the end of her journey, Lily becomes a seasoned adventurer and a storyteller, sharing her experiences and wisdom with her fellow bees.
+
+### Do I need to reconfirm my flight with Swiss Airlines?
+No, reconfirmation of SWISS flights is not required.",response_content
+1,20:04:58,"### How can I change my booking with Swiss Airlines?
+To change your booking with Swiss Airlines, you need to follow these guidelines:
+1. **Ticket Number**: Your ticket number must start with 724 (SWISS ticket no./plate).
+2. **Active Flight Booking**: There must be an active flight booking for your ticket. You cannot change open tickets or tickets without the corresponding flight segments online.
+3. **Change Options**: You can change the flight and travel dates, but changing the origin, destination, or names is not possible online.
+4. **Time Limit**: You can rebook online up to three hours before departure if you are departing from a Swiss airport.
+5. **Multiple Changes**: If the fare condition allows it, you can make multiple changes to your itinerary after the initial change.
+
+### Who is the 47th president of the USA?
+The 47th president of the United States is Donald Trump. He assumed office on January 20, 2025, after previously serving as the 45th president from 2017 to 2021.",response_content
