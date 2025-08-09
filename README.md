@@ -81,7 +81,6 @@ LANGCHAIN_API_KEY=your_langchain_api_key_here  # Optional for tracing
 
 2. Create and activate a virtual environment:
      ```bash
-     uv init
      uv venv
      ```
 
