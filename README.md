@@ -8,7 +8,6 @@
 - **Web Search Integration**: Real-time web search capabilities using Tavily API
 - **Intelligent Agent**: LangGraph-powered agent that can decide which tools to use based on query context
 - **Chat Memory**: Persistent conversation history and memory management
-- **Gradio Interface**: User-friendly web interface for chatbot interactions
 
 ## Architecture
 
@@ -76,17 +75,11 @@ LANGCHAIN_API_KEY=your_langchain_api_key_here  # Optional for tracing
 
 1. Clone the repository and change directory:
    ```bash
-   git clone <repository-url>
-   cd RAG-multiple-databases
+   git clone https://github.com/thepatt/RAG-system-05-AI.git
+   cd RAG-system-05-AI
    ```
 
 2. Create and activate a virtual environment:
-   - macOS/Linux:
-     ```bash
-     uv init
-     uv venv
-     ```
-   - Windows:
      ```bash
      uv init
      uv venv
