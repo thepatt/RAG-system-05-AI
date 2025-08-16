@@ -106,7 +106,7 @@ LANGCHAIN_API_KEY=your_langchain_api_key_here  # Optional for tracing
 
 6. Run the application:
    ```bash
-   uv run src/app.py
+   streamlit run src/app.py
    ```
 
 7. Open your browser and navigate to the displayed local URL (typically `http://127.0.0.1:7860`)

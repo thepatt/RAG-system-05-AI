@@ -16,6 +16,7 @@ dependencies = [
     "langgraph>=0.3.8",
     "logger>=1.4",
     "logzero>=1.7.0",
+    "openai-agents>=0.2.7",
     "psycopg2>=2.9.10",
     "pypdf>=5.3.1",
     "pyprojroot>=0.3.0",
